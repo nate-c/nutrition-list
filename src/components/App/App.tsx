@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import NutritionList from '../NutritionList/NutritionList';
 import {Dessert} from '../../models/models';
 import './App.css';
@@ -6,39 +6,54 @@ import './App.css';
 const d = [{dessert: "Oreo",nutritionInfo: {calories: 437,fat: 18, carb: 63,   protein: 5 }},
             {dessert: "Nougat",nutritionInfo: {calories: 438,fat: 19, carb: 64,   protein: 4, }}]
 
-function App() {
-  const [desserts, updateDesserts] = useState(d);
+type MyState = {
+  desserts: Dessert[];  
+};
 
-  const sort = (name:string) => {
+class App extends React.Component<{}, MyState> {
+  constructor(props: any){
+    super(props)
+    this.state = {
+      desserts: d
+    }
+  }
+  sort = (name:string) => {
+    const {desserts} = this.state;
     console.log('hitting prop')
     const sortedDesserts = desserts.sort((a:any, b:any) => {
       return a.nutritionInfo[name] - b.nutritionInfo[name] ;   
     });
     console.log('sorted dessertes', sortedDesserts);
-    updateDesserts(sortedDesserts);
+    this.setState({desserts: sortedDesserts})
   };
-  const addDessert = (newDessert: Dessert) => {
+  addDessert = (newDessert: Dessert) => {
+    const {desserts} = this.state;
     let newDesserts :Dessert[] = [...desserts, newDessert];
-    updateDesserts(newDesserts);
+    this.setState({desserts: newDesserts})
   };
-  const deleteDessert = (dessert: Dessert) => {
+  deleteDessert = (dessert: Dessert) => {
+    const {desserts} = this.state;
     const updatedDesserts = desserts.filter( x=> x! === dessert);
-    updateDesserts(updatedDesserts);
+    this.setState({desserts: updatedDesserts})
   };
-  const resetDesserts = () =>{
-    updateDesserts(d);
+  resetDesserts = () =>{
+    // updateDesserts(d);
   }
-  return (
-    <div className="App">
-      <NutritionList 
-        desserts={desserts} 
-        addDessert={() =>{}}
-        removeDessert={() =>{}}
-        sort={sort}
-        reset={resetDesserts}
-      />
-    </div>
-  );
+  render(){
+    const {desserts} = this.state;
+    return (
+      <div className="App">
+        <NutritionList 
+          desserts={desserts} 
+          addDessert={this.addDessert}
+          removeDessert={this.deleteDessert}
+          sort={this.sort}
+          reset={this.resetDesserts}
+        />
+      </div>
+    );
+  }
+  
 }
 
 export default App;

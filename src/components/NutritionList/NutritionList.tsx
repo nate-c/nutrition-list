@@ -65,29 +65,29 @@ class NutritionList extends React.Component<MyProps,MyState>{
                 <div className="">
                     <div className="overflow-auto">
                         <table className="f6 w-100 mw8 center" cellSpacing="0">
-                        <thead>
-                            <tr>
-                            <th className="fw6 bb b--black-20 tl pb3 pr3 bg-white">
-                                <input className="pv3 pr3 bb b--black-20" type="checkbox" />
-                            </th>
-                            {/* <th className="fw6 bb b--black-20 tl pb3 pr3 bg-white" onClick={(e) => this.sort('Dessert')}>Dessert</th> */}
-                            {headers.map((header) =>
-                                <th className="fw6 bb b--black-20 tl pb3 pr3 bg-white" onClick={(e) => this.sort(header)}>{header}</th>
-                            )}
-                            </tr>
-                        </thead>
-                        <tbody className="lh-copy">
-                            {desserts.length > 0 && desserts.map((dessert) =>
+                            <thead>
                                 <tr>
-                                    <td className="pv3 pr3 bb b--black-20"><input type="checkbox" /></td>
-                                    <td className="pv3 pr3 bb b--black-20">{dessert?.dessert}</td>
-                                    <td className="pv3 pr3 bb b--black-20">{dessert?.nutritionInfo?.calories}</td>
-                                    <td className="pv3 pr3 bb b--black-20">{dessert?.nutritionInfo?.fat}</td>
-                                    <td className="pv3 pr3 bb b--black-20">{dessert?.nutritionInfo?.carb}</td>
-                                    <td className="pv3 pr3 bb b--black-20">{dessert?.nutritionInfo?.protein}</td>
+                                <th className="fw6 bb b--black-20 tl pb3 pr3 bg-white">
+                                    <input className="pv3 pr3 bb b--black-20" type="checkbox" />
+                                </th>
+                                {/* <th className="fw6 bb b--black-20 tl pb3 pr3 bg-white" onClick={(e) => this.sort('Dessert')}>Dessert</th> */}
+                                {headers.map((header) =>
+                                    <th className="fw6 bb b--black-20 tl pb3 pr3 bg-white" onClick={(e) => this.sort(header)}>{header}</th>
+                                )}
                                 </tr>
-                            )}
-                        </tbody>
+                            </thead>
+                            <tbody className="lh-copy">
+                                {desserts.length > 0 && desserts.map((dessert) =>
+                                    <tr>
+                                        <td className="pv3 pr3 bb b--black-20"><input type="checkbox" /></td>
+                                        <td className="pv3 pr3 bb b--black-20">{dessert?.dessert}</td>
+                                        <td className="pv3 pr3 bb b--black-20">{dessert?.nutritionInfo?.calories}</td>
+                                        <td className="pv3 pr3 bb b--black-20">{dessert?.nutritionInfo?.fat}</td>
+                                        <td className="pv3 pr3 bb b--black-20">{dessert?.nutritionInfo?.carb}</td>
+                                        <td className="pv3 pr3 bb b--black-20">{dessert?.nutritionInfo?.protein}</td>
+                                    </tr>
+                                )}
+                            </tbody>
                         </table>
                     </div>
                 </div>
