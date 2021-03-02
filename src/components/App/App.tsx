@@ -19,11 +19,9 @@ class App extends React.Component<{}, MyState> {
   }
   sort = (name:string) => {
     const {desserts} = this.state;
-    console.log('hitting prop')
     const sortedDesserts = desserts.sort((a:any, b:any) => {
       return a.nutritionInfo[name] - b.nutritionInfo[name] ;   
     });
-    console.log('sorted dessertes', sortedDesserts);
     this.setState({desserts: sortedDesserts})
   };
   addDessert = (newDessert: Dessert) => {
