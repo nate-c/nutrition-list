@@ -3,8 +3,8 @@ import NutritionList from '../NutritionList/NutritionList';
 import {Dessert} from '../../models/models';
 import './App.css';
 
-const d = [{dessert: "Oreo",nutritionInfo: {calories: 437,fat: 18, carb: 63,   protein: 5 }},
-            {dessert: "Nougat",nutritionInfo: {calories: 438,fat: 19, carb: 64,   protein: 4, }}]
+const d = [{id: 1, dessert: "Oreo",nutritionInfo: {calories: 437,fat: 18, carb: 63,   protein: 5 }},
+            {id: 2, dessert: "Nougat",nutritionInfo: {calories: 438,fat: 19, carb: 64,   protein: 4, }}]
 
 type MyState = {
   desserts: Dessert[];  
