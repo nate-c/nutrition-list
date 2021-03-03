@@ -1,4 +1,5 @@
 export interface Dessert {
+    id: number,
     dessert: string,
     nutritionInfo: NutritionInfo
 }
