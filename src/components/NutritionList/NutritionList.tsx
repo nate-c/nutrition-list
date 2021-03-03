@@ -28,6 +28,12 @@ const headers = [
 class NutritionList extends React.Component<MyProps,MyState>{
     constructor(props: any){
         super(props);
+        this.state={
+            sortBy: '',
+            sortColumn: '',
+            openWindow: false,
+            selected: []
+        }
     }
     sort = (name:string) => {
         this.props.sort(name.toLowerCase());
@@ -52,9 +58,11 @@ class NutritionList extends React.Component<MyProps,MyState>{
         const {openWindow,selected} = this.state;
         return(
             <div className="nutrition-list center pa4">
-                {openWindow && <Form 
-                    addData={this.addItem}
-                />}
+                {openWindow && 
+                    <Form 
+                        addData={this.addItem}
+                        nextId={desserts.length+1}
+                    />}
 
                 <div className="header-block">
                     <h3 className="inline-block fl-left"> Nutrition List </h3>
@@ -88,7 +96,7 @@ class NutritionList extends React.Component<MyProps,MyState>{
                             <tbody className="lh-copy">
                                 {desserts.length > 0 && desserts.map((dessert) =>
                                     <tr>
-                                        <td className="pv3 pr3 bb b--black-20"><input type="checkbox" checked={selected.includes(dessert.id)}/></td>
+                                        <td className="pv3 pr3 bb b--black-20"><input type="checkbox" onChange={(e) => this.select(dessert.id)} checked={selected.includes(dessert.id)}/></td>
                                         <td className="pv3 pr3 bb b--black-20">{dessert?.dessert}</td>
                                         <td className="pv3 pr3 bb b--black-20">{dessert?.nutritionInfo?.calories}</td>
                                         <td className="pv3 pr3 bb b--black-20">{dessert?.nutritionInfo?.fat}</td>

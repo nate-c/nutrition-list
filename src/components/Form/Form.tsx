@@ -1,50 +1,72 @@
 import React from 'react';
-import { factory } from 'typescript';
 import {Dessert} from '../../models/models';
 
 import './Form.css';
 
 type MyProps = {
     addData: (obj: Dessert) => void;
+    nextId: number;
   };
 type MyState = {
     dessert: string;
-    calories: Number;
-    fat: Number;
-    carbs: Number;
-    protein: Number;
+    calories: number;
+    fat: number;
+    carbs: number;
+    protein: number;
 };
 
 class Form extends React.Component<MyProps,MyState>{
     constructor(props:any){
         super(props);
+        this.state = {
+            dessert: '',
+            calories: 0,
+            fat: 0,
+            carbs: 0,
+            protein: 0
+        }
     }
-    update(e: any, property:string){
-        let correctedVal: any = null;
+    update = (e: any, property:string) =>{
         const valAsNumber = Number(e.target.value);
+        
         switch(property){
             case 'dessert':
                 this.setState({dessert: e.target.value})
                 break;
             case 'calories':
-                // break;
+                if(isNaN(valAsNumber)){
+                    return;
+                }
+                this.setState({calories: valAsNumber});
+                break;
             case 'fat':
-                // break;
+                if(isNaN(valAsNumber)){
+                    return;
+                }
+                this.setState({fat: valAsNumber});
+                break;
             case 'carbs':
-                // break;
+                if(isNaN(valAsNumber)){
+                    return;
+                }
+                this.setState({carbs: valAsNumber});
+                break;
             case 'protein':
-                // break;
-            default:
-                correctedVal = !isNaN(valAsNumber) ? valAsNumber : this.state[property];
-                this.setState({calories: correctedVal});
+                if(isNaN(valAsNumber)){
+                    return;
+                }
+                this.setState({protein: valAsNumber});
+                break;
+            default:                
                 break;
         }
         // this.setState({`${name}`:correctedVal});
     }
-    submitData(){
+    submitData = () => {
         const {dessert, calories, fat, carbs, protein} = this.state;
+        const {nextId} = this.props;
         const newDessert = {
-            id: null,
+            id: nextId,
             dessert: dessert,
             nutritionInfo: {
                 calories: calories,
@@ -60,8 +82,8 @@ class Form extends React.Component<MyProps,MyState>{
         return(
             <div className="form">
                 <article className="pa4 black-80">
-                    <form action="sign-up_submit" method="get" accept-charset="utf-8">
-                        <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
+                    <div accept-charset="utf-8">
+                        <fieldset  className="ba b--transparent ph0 mh0">
                             <legend className="ph0 mh0 fw6 clip">Please fill all details before you submit</legend>
                             <div className="mt3">
                                 <label className="db fw4 lh-copy f6" >Dessert Name*</label>
@@ -84,11 +106,10 @@ class Form extends React.Component<MyProps,MyState>{
                                 <input className="pa2 input-reset ba bg-transparent w-100 measure" type="text" onChange={(e) =>this.update(e,'protein')} value={protein}   />
                             </div>
                             <div className="mt3">
-                                <label className="db fw4 lh-copy f6">Submit</label>
-                                <button>Submit</button>
+                                <button onClick={this.submitData}>Submit</button>
                             </div>
                         </fieldset>
-                    </form>
+                    </div>
                 </article>
             </div>
         );

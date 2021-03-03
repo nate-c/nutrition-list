@@ -27,6 +27,7 @@ class App extends React.Component<{}, MyState> {
   addDessert = (newDessert: Dessert) => {
     const {desserts} = this.state;
     let newDesserts :Dessert[] = [...desserts, newDessert];
+    console.log("new deserts", newDessert)
     this.setState({desserts: newDesserts})
   };
   deleteDessert = (dessert: Dessert) => {
