@@ -47,9 +47,14 @@
     padding-top: 1rem;
     padding-bottom: 1rem;
 }
-
+.mg-rt{
+    margin-right: 10px;
+}
 .tl {
     text-align: left;
+}
+.tc{
+    text-align: center;
 }
 
 .f6 {
@@ -259,10 +264,10 @@
 }
 
 .header-block{
-    height: 50px;
+    height: 55px;
 }
 .command-block{
-    height: 50px;
+    height: 55px;
     background-color: pink;
    
 }
@@ -283,6 +288,7 @@ h3{
 .add-item-btn{
     /* margin-right: 10px; */
     margin-top: 10px;
+    margin-right: 10px;
     background-color: #fff;
     color:#137752;
 }
