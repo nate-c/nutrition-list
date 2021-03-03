@@ -1,4 +1,5 @@
 import React from 'react';
+import { factory } from 'typescript';
 import {Dessert} from '../../models/models';
 
 import './Form.css';
@@ -7,7 +8,7 @@ type MyProps = {
     addData: (obj: Dessert) => void;
   };
 type MyState = {
-    name: string;
+    dessert: string;
     calories: Number;
     fat: Number;
     carbs: Number;
@@ -22,8 +23,8 @@ class Form extends React.Component<MyProps,MyState>{
         let correctedVal: any = null;
         const valAsNumber = Number(e.target.value);
         switch(property){
-            case 'name':
-                this.setState({name: e.target.value})
+            case 'dessert':
+                this.setState({dessert: e.target.value})
                 break;
             case 'calories':
                 // break;
@@ -40,6 +41,20 @@ class Form extends React.Component<MyProps,MyState>{
         }
         // this.setState({`${name}`:correctedVal});
     }
+    submitData(){
+        const {dessert, calories, fat, carbs, protein} = this.state;
+        const newDessert = {
+            id: null,
+            dessert: dessert,
+            nutritionInfo: {
+                calories: calories,
+                fat: fat,
+                carb: carbs,
+                protein: protein
+            }
+        }
+        this.props.addData(newDessert);
+    }
     render(){
         return(
             <div className="form">
@@ -49,23 +64,23 @@ class Form extends React.Component<MyProps,MyState>{
                             <legend className="ph0 mh0 fw6 clip">Please fill all details before you submit</legend>
                             <div className="mt3">
                                 <label className="db fw4 lh-copy f6" >Dessert Name*</label>
-                                <input className="pa2 input-reset ba bg-transparent w-100 measure" type="email" name="email-address"  />
+                                <input className="pa2 input-reset ba bg-transparent w-100 measure" type="text"  />
                             </div>
                             <div className="mt3">
                                 <label className="db fw4 lh-copy f6" >Calories*</label>
-                                <input className="pa2 input-reset ba bg-transparent w-100 measure" type="email" name="email-address" />
+                                <input className="pa2 input-reset ba bg-transparent w-100 measure" type="text"  />
                             </div>
                             <div className="mt3">
                                 <label className="db fw4 lh-copy f6" >Fat*</label>
-                                <input className="pa2 input-reset ba bg-transparent w-100 measure" type="email" name="email-address" />
+                                <input className="pa2 input-reset ba bg-transparent w-100 measure" type="text"  />
                             </div>
                             <div className="mt3">
                                 <label className="db fw4 lh-copy f6" >Carbs*</label>
-                                <input className="pa2 input-reset ba bg-transparent w-100 measure" type="email" name="email-address"  />
+                                <input className="pa2 input-reset ba bg-transparent w-100 measure" type="text"  />
                             </div>
                             <div className="mt3">
                                 <label className="db fw4 lh-copy f6" >Protein*</label>
-                                <input className="pa2 input-reset ba bg-transparent w-100 measure" type="email" name="email-address"/>
+                                <input className="pa2 input-reset ba bg-transparent w-100 measure" type="text"  />
                             </div>
                             <div className="mt3">
                                 <label className="db fw4 lh-copy f6">Submit</label>
