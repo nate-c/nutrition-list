@@ -80,11 +80,13 @@ class Form extends React.Component<MyProps,MyState>{
     render(){
         const {dessert, calories, fat, carbs, protein} = this.state;
         return(
-            <div className="form">
-                <article className="pa4 black-80">
-                    <div accept-charset="utf-8">
+            <div className="form w-100 h-100">
+                <article className="pa4 black-80 ">
+                    <div className="form-data" accept-charset="utf-8">
                         <fieldset  className="ba b--transparent ph0 mh0">
-                            <legend className="ph0 mh0 fw6 clip">Please fill all details before you submit</legend>
+                            <div className="mt3">
+                                <label className="pa2  ba  w-100 measure warning" >Please fill all details before you submit</label>
+                            </div>
                             <div className="mt3">
                                 <label className="db fw4 lh-copy f6" >Dessert Name*</label>
                                 <input className="pa2 input-reset ba bg-transparent w-100 measure" type="text" onChange={(e) =>this.update(e,'dessert')} value={dessert} />
@@ -106,7 +108,7 @@ class Form extends React.Component<MyProps,MyState>{
                                 <input className="pa2 input-reset ba bg-transparent w-100 measure" type="text" onChange={(e) =>this.update(e,'protein')} value={protein}   />
                             </div>
                             <div className="mt3">
-                                <button onClick={this.submitData}>Submit</button>
+                                <button className="pa2 input-reset ba bg-transparent w-100 measure submit-btn" onClick={this.submitData}>Submit</button>
                             </div>
                         </fieldset>
                     </div>
