@@ -1,12 +1,22 @@
 import React from 'react';
+import {Dessert} from '../../models/models';
+
 import './Form.css';
 
-class Form extends React.Component{
+type MyProps = {
+    addData: (obj: Dessert) => void;
+  };
+type MyState = {
+    name: string;
+    calories: string;
+    fat: string;
+    carbs: string;
+    protein: string;
+};
+
+class Form extends React.Component<MyProps,MyState>{
     constructor(props:any){
         super(props);
-        this.state = {
-
-        }
     }
     render(){
         return(
@@ -46,3 +56,5 @@ class Form extends React.Component{
         );
     }
 }
+
+export default Form;
