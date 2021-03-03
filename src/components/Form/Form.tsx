@@ -101,7 +101,7 @@ class Form extends React.Component<MyProps,MyState>{
                             </div>
                             <div className="mt3">
                                 <label className="db fw4 lh-copy f6" >Carbs*</label>
-                                <input className="pa2 input-reset ba bg-transparent w-100 measure" type="text" onChange={(e) =>this.update(e,'carb')} value={carbs}   />
+                                <input className="pa2 input-reset ba bg-transparent w-100 measure" type="text" onChange={(e) =>this.update(e,'carbs')} value={carbs}   />
                             </div>
                             <div className="mt3">
                                 <label className="db fw4 lh-copy f6" >Protein*</label>
