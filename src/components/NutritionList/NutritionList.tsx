@@ -14,6 +14,7 @@ type MyState = {
     sortBy: string; // like this
     sortColumn: string;
     openWindow: boolean;
+    selected: number[];
 };
 
 const headers = [
@@ -32,23 +33,23 @@ class NutritionList extends React.Component<MyProps,MyState>{
         this.props.sort(name.toLowerCase());
     }
     select = (id: number) =>{
+        const {selected} = this.state;
+        let updatedSelectedArray = this.state.selected.includes(id) ?
+                           [...selected, id] :
+                           selected.filter(x => x !== id);
 
+        this.setState({selected: updatedSelectedArray});
     }
     addItem = (item: Dessert) =>{
         this.props.addDessert(item);
+        this.setState({openWindow: false});
     }
     showForm = () =>{
         this.setState({openWindow: true})
     }
-    getHeaders = () =>{
-
-    }
-    open = () =>{
-
-    }
     render(){
         const {desserts} = this.props;
-        const {openWindow} = this.state;
+        const {openWindow,selected} = this.state;
         return(
             <div className="nutrition-list center pa4">
                 {openWindow && <Form 
@@ -63,7 +64,7 @@ class NutritionList extends React.Component<MyProps,MyState>{
                 </div>
                 <div className="command-block">
                     <div className="selected-block inline-block fl-left">
-                        0 selected
+                        {selected.length} selected
                     </div>
                     <div className="selected-block inline-block fl-right">
                         <button className="f6 link dim ph3 pv2 mb2 dib white bg-dark-green reset-btn" onClick={this.showForm}>Add Item</button>
@@ -87,7 +88,7 @@ class NutritionList extends React.Component<MyProps,MyState>{
                             <tbody className="lh-copy">
                                 {desserts.length > 0 && desserts.map((dessert) =>
                                     <tr>
-                                        <td className="pv3 pr3 bb b--black-20"><input type="checkbox" /></td>
+                                        <td className="pv3 pr3 bb b--black-20"><input type="checkbox" checked={selected.includes(dessert.id)}/></td>
                                         <td className="pv3 pr3 bb b--black-20">{dessert?.dessert}</td>
                                         <td className="pv3 pr3 bb b--black-20">{dessert?.nutritionInfo?.calories}</td>
                                         <td className="pv3 pr3 bb b--black-20">{dessert?.nutritionInfo?.fat}</td>
