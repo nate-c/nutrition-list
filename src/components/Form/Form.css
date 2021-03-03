@@ -1,3 +1,11 @@
+.form{
+    z-index: 999;
+    background-color: #333;
+    opacity: 85%;
+}
+.form-data{
+    
+}
 .ba {
     border-style: solid;
     border-width: 1px;
