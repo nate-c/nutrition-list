@@ -56,6 +56,7 @@ class Form extends React.Component<MyProps,MyState>{
         this.props.addData(newDessert);
     }
     render(){
+        const {dessert, calories, fat, carbs, protein} = this.state;
         return(
             <div className="form">
                 <article className="pa4 black-80">
@@ -64,23 +65,23 @@ class Form extends React.Component<MyProps,MyState>{
                             <legend className="ph0 mh0 fw6 clip">Please fill all details before you submit</legend>
                             <div className="mt3">
                                 <label className="db fw4 lh-copy f6" >Dessert Name*</label>
-                                <input className="pa2 input-reset ba bg-transparent w-100 measure" type="text"  />
+                                <input className="pa2 input-reset ba bg-transparent w-100 measure" type="text" onChange={(e) =>this.update(e,'dessert')} value={dessert} />
                             </div>
                             <div className="mt3">
                                 <label className="db fw4 lh-copy f6" >Calories*</label>
-                                <input className="pa2 input-reset ba bg-transparent w-100 measure" type="text"  />
+                                <input className="pa2 input-reset ba bg-transparent w-100 measure" type="text" onChange={(e) =>this.update(e,'calories')} value={calories} />
                             </div>
                             <div className="mt3">
                                 <label className="db fw4 lh-copy f6" >Fat*</label>
-                                <input className="pa2 input-reset ba bg-transparent w-100 measure" type="text"  />
+                                <input className="pa2 input-reset ba bg-transparent w-100 measure" type="text"  onChange={(e) =>this.update(e,'fat')} value={fat}  />
                             </div>
                             <div className="mt3">
                                 <label className="db fw4 lh-copy f6" >Carbs*</label>
-                                <input className="pa2 input-reset ba bg-transparent w-100 measure" type="text"  />
+                                <input className="pa2 input-reset ba bg-transparent w-100 measure" type="text" onChange={(e) =>this.update(e,'carb')} value={carbs}   />
                             </div>
                             <div className="mt3">
                                 <label className="db fw4 lh-copy f6" >Protein*</label>
-                                <input className="pa2 input-reset ba bg-transparent w-100 measure" type="text"  />
+                                <input className="pa2 input-reset ba bg-transparent w-100 measure" type="text" onChange={(e) =>this.update(e,'protein')} value={protein}   />
                             </div>
                             <div className="mt3">
                                 <label className="db fw4 lh-copy f6">Submit</label>
