@@ -67,7 +67,7 @@ class NutritionList extends React.Component<MyProps,MyState>{
                 <div className="header-block">
                     <h3 className="inline-block fl-left"> Nutrition List </h3>
                     <div className="inline-block fl-right">
-                        <button className="f6 link dim ph3 pv2 mb2 dib white bg-dark-green reset-btn">Reset</button>
+                        <button className="f6 link dim ph3 pv2 mb2 dib white bg-dark-green reset-btn">RESET DATA</button>
                     </div>
                 </div>
                 <div className="command-block">
@@ -75,12 +75,12 @@ class NutritionList extends React.Component<MyProps,MyState>{
                         {selected.length} selected
                     </div>
                     <div className="selected-block inline-block fl-right">
-                        <button className="f6 link dim ph3 pv2 mb2 dib white bg-dark-green reset-btn" onClick={this.showForm}>Add Item</button>
+                        <button className="f6 link dim ph3 pv2 mb2 dib white bg-dark-green add-item-btn" onClick={this.showForm}>+ADD ITEM</button>
                         <button className="f6 link dim ph3 pv2 mb2 dib white bg-dark-green reset-btn">Delete</button>
                     </div>
                 </div>
-                <div className="">
-                    <div className="overflow-auto">
+                <div className="n-list">
+                    <div className="overflow-auto w-100">
                         <table className="f6 w-100 mw8 center" cellSpacing="0">
                             <thead>
                                 <tr>
