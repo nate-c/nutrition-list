@@ -1,0 +1,25 @@
+type Query {
+   desserts: [Dessert]
+}
+
+type Dessert{
+    id: number;
+    name: string;
+    nutrition: Nutrition;
+}
+
+type Nutrition {
+    calories: number,   
+    fat: number,
+    carb: number,
+    protein: number
+}
+
+
+type Mutation{
+    updateDesserts(dessert: Dessert): Dessert
+}
+
+type Mutatino{
+    deleteDesserts(dessert: Dessert): Dessert
+}
