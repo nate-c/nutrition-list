@@ -36,7 +36,7 @@ class App extends React.Component<{}, MyState> {
     this.setState({desserts: updatedDesserts})
   };
   resetDesserts = () =>{
-    // updateDesserts(d);
+    this.setState({desserts: d});
   }
   render(){
     const {desserts} = this.state;
