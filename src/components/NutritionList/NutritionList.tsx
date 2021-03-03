@@ -1,6 +1,7 @@
 import React from 'react';
 import './NutritionList.css';
 import {Dessert} from '../../models/models';
+import Form from'../Form/Form';
 
 type MyProps = {
     desserts: Dessert[];
@@ -28,14 +29,16 @@ class NutritionList extends React.Component<MyProps,MyState>{
         super(props);
     }
     sort = (name:string) => {
-        console.log('sorting')
         this.props.sort(name.toLowerCase());
     }
     select = (id: Dessert) =>{
 
     }
-    addItem = () =>{
-
+    addItem = (item: Dessert) =>{
+        this.props.addDessert(item);
+    }
+    showForm = () =>{
+        this.setState({openWindow: true})
     }
     getHeaders = () =>{
 
@@ -47,19 +50,23 @@ class NutritionList extends React.Component<MyProps,MyState>{
         const {desserts} = this.props;
         return(
             <div className="nutrition-list center pa4">
+                <Form 
+                    addData={this.addItem}
+                />
+
                 <div className="header-block">
                     <h3 className="inline-block fl-left"> Nutrition List </h3>
                     <div className="inline-block fl-right">
                         <button className="f6 link dim ph3 pv2 mb2 dib white bg-dark-green reset-btn">Reset</button>
                     </div>
                 </div>
-                <div className="command-block pa4">
+                <div className="command-block">
                     <div className="selected-block inline-block fl-left">
                         0 selected
                     </div>
                     <div className="selected-block inline-block fl-right">
-                    <button className="f6 link dim ph3 pv2 mb2 dib white bg-dark-green reset-btn" onClick={this.addItem}>Add Item</button>
-                    <button className="f6 link dim ph3 pv2 mb2 dib white bg-dark-green reset-btn">Delete</button>
+                        <button className="f6 link dim ph3 pv2 mb2 dib white bg-dark-green reset-btn" onClick={this.showForm}>Add Item</button>
+                        <button className="f6 link dim ph3 pv2 mb2 dib white bg-dark-green reset-btn">Delete</button>
                     </div>
                 </div>
                 <div className="">
