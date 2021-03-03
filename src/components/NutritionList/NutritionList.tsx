@@ -31,7 +31,7 @@ class NutritionList extends React.Component<MyProps,MyState>{
     sort = (name:string) => {
         this.props.sort(name.toLowerCase());
     }
-    select = (id: Dessert) =>{
+    select = (id: number) =>{
 
     }
     addItem = (item: Dessert) =>{
@@ -48,11 +48,12 @@ class NutritionList extends React.Component<MyProps,MyState>{
     }
     render(){
         const {desserts} = this.props;
+        const {openWindow} = this.state;
         return(
             <div className="nutrition-list center pa4">
-                <Form 
+                {openWindow && <Form 
                     addData={this.addItem}
-                />
+                />}
 
                 <div className="header-block">
                     <h3 className="inline-block fl-left"> Nutrition List </h3>
