@@ -2,7 +2,7 @@ import React  from 'react';
 import NutritionList from '../NutritionList/NutritionList';
 import {Dessert} from '../../models/models';
 import { gql, useQuery } from '@apollo/client';
-import {getAllDessertsQuery} from '../../graphQL/queries';
+import {getAllDessertsQuery, deleteDesserts,updateDesserts} from '../../graphQL/queries';
 import './App.css';
 import { useEffect, useState } from 'react';
 
@@ -27,20 +27,18 @@ function App(){// extends React.Component<{}, MyState> {
   };
   const addDessert = (newDessert: Dessert) => {
     let newDesserts :Dessert[] = [...desserts, newDessert];
-    // const getAllDessertsQuery = gql`query getAllDesserts() {
-    //                                       dessert {
-    //                                         id,
-    //                                         name,
-    //                                         nutrition
-    //                                       }
-    //                                     }`;
+    //MOCKING ADD DESERT
     // const { loading, error, data } = useQuery(
-    //    getAllDessertsQuery
+    //   updateDesserts
     // );
     updateDesserts(newDesserts);
   };
   const deleteDessert = (ids: number[]) => {
     const updatedDesserts = desserts.filter( x=> !ids.includes(x.id));
+    //MOCKING ADD DESERT
+    // const { loading, error, data } = useQuery(
+    //    deleteDesserts
+    // );
     updateDesserts(updatedDesserts);
   };
   const resetDesserts = () =>{
