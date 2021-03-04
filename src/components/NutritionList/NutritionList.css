@@ -50,6 +50,12 @@
 .mg-rt{
     margin-right: 10px;
 }
+.mg-lft{
+    margin-left: -100px;
+}
+.selected-block{
+    color: #d5008f;
+}
 .tl {
     text-align: left;
 }
