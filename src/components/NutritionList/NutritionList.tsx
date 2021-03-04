@@ -86,6 +86,7 @@ class NutritionList extends React.Component<MyProps,MyState>{
     delete = () =>{
         const {selected} = this.state;
         this.props.removeDessert(selected);
+        this.setState({selected: []})
     }
     render(){
         const {desserts} = this.props;
@@ -119,7 +120,7 @@ class NutritionList extends React.Component<MyProps,MyState>{
                             <thead>
                                 <tr>
                                     <th className="fw6 bb b--black-20 tl pb3 pr3 bg-white tc pd-1">
-                                        <input className="pv3 pr3 bb b--black-20" onChange={(e) => this.toggleAll()} type="checkbox" checked={selected.length === desserts.length}/>
+                                        <input className="pv3 pr3 bb b--black-20" onChange={(e) => this.toggleAll()} type="checkbox" checked={selected.length === desserts.length && selected.length >0}/>
                                     </th>
                                     {headers.map((header) =>
                                         <th className="fw6 bb b--black-20 tl pb3 pr3 bg-white tc pd-1" onClick={(e) => this.sort(header.key)}>{header.label}</th>

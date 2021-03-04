@@ -1,13 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import { ApolloProvider } from '@apollo/client';
+import { createMockClient } from 'mock-apollo-client';
 import App from './components/App/App';
 import reportWebVitals from './reportWebVitals';
 
+let client = createMockClient();
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <ApolloProvider client={client}>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+  </ApolloProvider>
+  ,
   document.getElementById('root')
 );
 
