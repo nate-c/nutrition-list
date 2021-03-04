@@ -18,11 +18,26 @@ type MyState = {
 };
 
 const headers = [
-    'Dessert',
-    'Calories',
-    'Fat',
-    'Carb',
-    'Protein'
+    {
+        key: 'Dessert',
+        label: 'Dessert (100g serving)'
+    },
+    {
+        key: 'Calories',
+        label: 'Calories'
+    },
+    {
+        key: 'Fat',
+        label: 'Fat (g)'
+    },
+    {
+        key: 'Carb',
+        label: 'Carbs (g)'
+    },
+    {
+        key: 'Protein',
+        label: 'Protein (g)'
+    }
 ]
 
 class NutritionList extends React.Component<MyProps,MyState>{
@@ -94,8 +109,8 @@ class NutritionList extends React.Component<MyProps,MyState>{
                         <b className="selected-block">{selected.length} selected</b>                        
                     </div>
                     <div className="selected-block inline-block fl-right mg-rt">
-                        <button className="f6 link dim ph3 pv2 mb2 dib white bg-dark-green add-item-btn" onClick={this.showForm}>+ADD ITEM</button>
-                        <button className="f6 link dim ph3 pv2 mb2 dib white bg-dark-green reset-btn" onClick={this.delete}>Delete</button>
+                        <button className="f6 link dim ph3 pv2 mb2 dib white bg-dark-green add-item-btn" onClick={this.showForm}>+ ADD ITEM</button>
+                        <button className="f6 link dim ph3 pv2 mb2 dib white bg-dark-green reset-btn" onClick={this.delete}>DELETE</button>
                     </div>
                 </div>
                 <div className="n-list">
@@ -107,7 +122,7 @@ class NutritionList extends React.Component<MyProps,MyState>{
                                         <input className="pv3 pr3 bb b--black-20" onChange={(e) => this.toggleAll()} type="checkbox" />
                                     </th>
                                     {headers.map((header) =>
-                                        <th className="fw6 bb b--black-20 tl pb3 pr3 bg-white tc pd-1" onClick={(e) => this.sort(header)}>{header}</th>
+                                        <th className="fw6 bb b--black-20 tl pb3 pr3 bg-white tc pd-1" onClick={(e) => this.sort(header.key)}>{header.label}</th>
                                     )}
                                 </tr>
                             </thead>
