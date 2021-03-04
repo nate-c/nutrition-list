@@ -20,6 +20,6 @@ type Mutation{
     updateDesserts(dessert: Dessert): Dessert
 }
 
-type Mutatino{
+type Mutation{
     deleteDesserts(dessert: Dessert): Dessert
 }
