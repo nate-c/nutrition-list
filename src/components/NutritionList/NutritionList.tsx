@@ -110,7 +110,7 @@ class NutritionList extends React.Component<MyProps,MyState>{
                     </div>
                     <div className="selected-block inline-block fl-right mg-rt">
                         <button className="f6 link dim ph3 pv2 mb2 dib white bg-dark-green add-item-btn" onClick={this.showForm}>+ ADD ITEM</button>
-                        <button className="f6 link dim ph3 pv2 mb2 dib white bg-dark-green reset-btn" onClick={this.delete}>DELETE</button>
+                        <button disabled={selected.length === 0 } className="f6 link dim ph3 pv2 mb2 dib white bg-dark-green reset-btn" onClick={this.delete}>DELETE</button>
                     </div>
                 </div>
                 <div className="n-list">
@@ -119,7 +119,7 @@ class NutritionList extends React.Component<MyProps,MyState>{
                             <thead>
                                 <tr>
                                     <th className="fw6 bb b--black-20 tl pb3 pr3 bg-white tc pd-1">
-                                        <input className="pv3 pr3 bb b--black-20" onChange={(e) => this.toggleAll()} type="checkbox" />
+                                        <input className="pv3 pr3 bb b--black-20" onChange={(e) => this.toggleAll()} type="checkbox" checked={selected.length === desserts.length}/>
                                     </th>
                                     {headers.map((header) =>
                                         <th className="fw6 bb b--black-20 tl pb3 pr3 bg-white tc pd-1" onClick={(e) => this.sort(header.key)}>{header.label}</th>
