@@ -6,7 +6,7 @@ import Form from'../Form/Form';
 type MyProps = {
     desserts: Dessert[];
     addDessert: (obj: Dessert) => void;
-    removeDessert: (obj: Dessert) => void;
+    removeDessert: (ids: number[]) => void;
     sort: (name: string) => void;
     reset: () => void;
   };
@@ -22,7 +22,7 @@ const headers = [
     'Calories',
     'Fat',
     'Carb',
-    'protein'
+    'Protein'
 ]
 
 class NutritionList extends React.Component<MyProps,MyState>{
@@ -39,8 +39,9 @@ class NutritionList extends React.Component<MyProps,MyState>{
         this.props.sort(name.toLowerCase());
     }
     select = (id: number) =>{
+        console.log('hitting select')
         const {selected} = this.state;
-        let updatedSelectedArray = this.state.selected.includes(id) ?
+        let updatedSelectedArray = !selected.includes(id) ?
                            [...selected, id] :
                            selected.filter(x => x !== id);
 
@@ -53,8 +54,23 @@ class NutritionList extends React.Component<MyProps,MyState>{
     showForm = () =>{
         this.setState({openWindow: true})
     }
+    toggleAll = ()=>{
+        const {selected} = this.state;
+        const {desserts} =this.props;
+        let updatedSelected = selected.length !== desserts.length ? 
+                                                    desserts.map((d) =>{
+                                                        return d.id;
+                                                    }) : 
+                                                    [];
+        this.setState({selected: updatedSelected})
+    }
     resetTable = () => {
+        this.setState({selected: []});
         this.props.reset();
+    }
+    delete = () =>{
+        const {selected} = this.state;
+        this.props.removeDessert(selected);
     }
     render(){
         const {desserts} = this.props;
@@ -79,7 +95,7 @@ class NutritionList extends React.Component<MyProps,MyState>{
                     </div>
                     <div className="selected-block inline-block fl-right mg-rt">
                         <button className="f6 link dim ph3 pv2 mb2 dib white bg-dark-green add-item-btn" onClick={this.showForm}>+ADD ITEM</button>
-                        <button className="f6 link dim ph3 pv2 mb2 dib white bg-dark-green reset-btn">Delete</button>
+                        <button className="f6 link dim ph3 pv2 mb2 dib white bg-dark-green reset-btn" onClick={this.delete}>Delete</button>
                     </div>
                 </div>
                 <div className="n-list">
@@ -88,9 +104,8 @@ class NutritionList extends React.Component<MyProps,MyState>{
                             <thead>
                                 <tr>
                                 <th className="fw6 bb b--black-20 tl pb3 pr3 bg-white tc">
-                                    <input className="pv3 pr3 bb b--black-20" type="checkbox" />
+                                    <input className="pv3 pr3 bb b--black-20" onChange={(e) => this.toggleAll()} type="checkbox" />
                                 </th>
-                                {/* <th className="fw6 bb b--black-20 tl pb3 pr3 bg-white" onClick={(e) => this.sort('Dessert')}>Dessert</th> */}
                                 {headers.map((header) =>
                                     <th className="fw6 bb b--black-20 tl pb3 pr3 bg-white tc" onClick={(e) => this.sort(header)}>{header}</th>
                                 )}

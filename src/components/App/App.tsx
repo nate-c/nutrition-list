@@ -29,10 +29,10 @@ class App extends React.Component<{}, MyState> {
     let newDesserts :Dessert[] = [...desserts, newDessert];
     this.setState({desserts: newDesserts})
   };
-  deleteDessert = (dessert: Dessert) => {
+  deleteDessert = (ids: number[]) => {
     const {desserts} = this.state;
-    const updatedDesserts = desserts.filter( x=> x! === dessert);
-    this.setState({desserts: updatedDesserts})
+    const updatedDesserts = desserts.filter( x=> !ids.includes(x.id));
+    this.setState({desserts: updatedDesserts});
   };
   resetDesserts = () =>{
     this.setState({desserts: d});
