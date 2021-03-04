@@ -8,7 +8,7 @@ type MyProps = {
     addDessert: (obj: Dessert) => void;
     removeDessert: (obj: Dessert) => void;
     sort: (name: string) => void;
-    reset: (name: string) => void;
+    reset: () => void;
   };
 type MyState = {
     sortBy: string; // like this
@@ -53,8 +53,11 @@ class NutritionList extends React.Component<MyProps,MyState>{
     showForm = () =>{
         this.setState({openWindow: true})
     }
+    resetTable = () => {
+        this.props.reset();
+    }
     render(){
-        const {desserts, reset} = this.props;
+        const {desserts} = this.props;
         const {openWindow,selected} = this.state;
         return(
             <div className="nutrition-list center pa4">
@@ -64,13 +67,13 @@ class NutritionList extends React.Component<MyProps,MyState>{
                         nextId={desserts.length+1}
                     />}
 
-                <div className="header-block">
+                <div className="header-block w-100">
                     <h3 className="inline-block fl-left"> Nutrition List </h3>
                     <div className="inline-block fl-right">
-                        <button className="f6 link dim ph3 pv2 mb2 dib white bg-dark-green reset-btn" onClick={(e) => reset}>RESET DATA</button>
+                        <button className="f6 link dim ph3 pv2 mb2 dib white bg-dark-green reset-btn" onClick={(e) => this.resetTable()}>RESET DATA</button>
                     </div>
                 </div>
-                <div className="command-block">
+                <div className="command-block w-100">
                     <div className="selected-block inline-block fl-left">
                         {selected.length} selected
                     </div>
